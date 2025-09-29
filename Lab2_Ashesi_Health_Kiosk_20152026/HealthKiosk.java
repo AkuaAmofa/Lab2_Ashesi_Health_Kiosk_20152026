@@ -44,7 +44,7 @@ public class HealthKiosk {
             int option = input.nextInt();
 
             if (option == 1) {
-                // BMI
+                // BMI calculation
                 System.out.print("Kindly enter your weight in kg: ");
                 double weight = input.nextDouble();
                 System.out.print("Kindly enter your height in meters: ");
@@ -62,7 +62,7 @@ public class HealthKiosk {
                 finalOptionValue = Math.round(bmi);
 
             } else if (option == 2) {
-                // Dosage
+                // Dosage calculation
                 System.out.print("Kindly enter the dosage required in mg: ");
                 double dosage = input.nextDouble();
                 int tablets = (int) Math.ceil(dosage / 250.0);
@@ -71,7 +71,7 @@ public class HealthKiosk {
                 finalOptionValue = tablets;
 
             } else if (option == 3) {
-                // Trig
+                // Trig helper
                 System.out.print("Kindly enter an angle in degrees: ");
                 double angle = input.nextDouble();
                 double radians = Math.toRadians(angle);
@@ -86,20 +86,24 @@ public class HealthKiosk {
         }
 
         // Task 3
-        char randomLetter = (char)('A' + rand.nextInt(26));
-        String digits = "";
-        for (int i = 0; i < 4; i++) {
-            int a = 3 + rand.nextInt(7);
-            digits = digits + a;
-        }
-        String studentID = randomLetter + digits;
+        char randomChar = (char) (rand.nextInt(26) + 'A'); // random letter A-Z
+        char digit1 = (char) ('0' + (rand.nextInt(7) + 3));
+        char digit2 = (char) ('0' + (rand.nextInt(7) + 3));
+        char digit3 = (char) ('0' + (rand.nextInt(7) + 3));
+        char digit4 = (char) ('0' + (rand.nextInt(7) + 3));
 
+        String studentID = "" + randomChar + digit1 + digit2 + digit3 + digit4;
+
+        System.out.println("Generated ID: " + studentID);
+        
+        // Validate ID: must be 5 characters, first letter, last 4 digits
         if (studentID.length() == 5 &&
             Character.isLetter(studentID.charAt(0)) &&
             Character.isDigit(studentID.charAt(1)) &&
             Character.isDigit(studentID.charAt(2)) &&
             Character.isDigit(studentID.charAt(3)) &&
             Character.isDigit(studentID.charAt(4))) {
+
             System.out.println("ID OK: " + studentID);
         } else {
             System.out.println("Invalid ID");
@@ -120,7 +124,7 @@ public class HealthKiosk {
         // Task 5
         if (serviceCode == 'T') {
             double roundedBmi = Math.round(bmi * 10) / 10.0;
-            System.out.println(serviceType.toUpperCase() + "  ID=" + studentID + "  BMI=" + roundedBmi + "  Code=" + displayCode);
+            System.out.println(serviceType.toUpperCase() + "  ID=" + studentID + "  BMI=" + roundedBmi +  "  Code=" + displayCode);
         } else {
             System.out.println(serviceType.toUpperCase() + "  ID=" + studentID + "  Code=" + displayCode);
         }
